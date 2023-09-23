@@ -8,30 +8,30 @@ SECTIONS
 
   .text : {
     *(.text .text.*)
-    . = ALIGN(0x1000);
+    . = ALIGN(4K);
     PROVIDE(etext = .);
   }
 
   .rodata : {
-    . = ALIGN(16);
+    . = ALIGN(4K);
     *(.srodata .srodata.*) /* do not need to distinguish this from .rodata */
-    . = ALIGN(16);
+    . = ALIGN(4K);
     *(.rodata .rodata.*)
   }
 
   .data : {
-    . = ALIGN(16);
+    . = ALIGN(4K);
     *(.sdata .sdata.*) /* do not need to distinguish this from .data */
-    . = ALIGN(16);
+    . = ALIGN(4K);
     *(.data .data.*)
   }
 
   .bss : {
-    . = ALIGN(16);
+    . = ALIGN(4K);
     *(.sbss .sbss.*) /* do not need to distinguish this from .bss */
-    . = ALIGN(16);
+    . = ALIGN(4K);
     *(.bss .bss.*)
   }
-
+  . = ALIGN(4K);
   PROVIDE(end = .);
 }
