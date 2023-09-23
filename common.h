@@ -11,11 +11,14 @@ struct task;
 
 // common.c
 void memcpy(void *, const void *, uint64);
+void delay();
 
 // uart.c
 void uartinit();
 void uartputc(char);
-void uartput_uint64(uint64);
+void print_str(char *);
+void printint_hex(uint64);
+void printint_dec(uint64);
 
 // task.c
 void create_task(void *);

@@ -4,6 +4,7 @@
     https://www.lammertbies.nl/comm/info/serial-uart
     https://dingfen.github.io/risc-v/2020/08/01/riscv-from-scratch-4.html
 */
+
 #include "common.h"
 #define REG_RHR 0 // read mode: Receive holding reg
 #define REG_THR 0 // write mode: Transmit Holding Reg
@@ -47,13 +48,28 @@ void uartputc(char c) {
   WriteReg(REG_THR, c);
 }
 
-// hex print
-void uartput_uint64(uint64 n) {
+void print_str(char *str) {
+  for (int i = 0; *(str + i) != '\0'; i++) {
+    uartputc(*(str + i));
+  }
+}
+
+void printint_hex(uint64 n) {
   int i = 0;
   char buf[64];
   do {
     buf[i++] = digits[n % 16];
   } while ((n /= 16) != 0);
+  while (--i >= 0)
+    uartputc(buf[i]);
+}
+
+void printint_dec(uint64 n) {
+  int i = 0;
+  char buf[64];
+  do {
+    buf[i++] = digits[n % 10];
+  } while ((n /= 10) != 0);
   while (--i >= 0)
     uartputc(buf[i]);
 }

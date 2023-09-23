@@ -3,19 +3,37 @@
 __attribute__((aligned(16))) char stack[4096];
 
 void print_task() {
-  char message[] = "this is task [1]!\n";
-  while (1)
-    for (int i = 0; *(message + i) != '\0'; i++) {
-      uartputc(*(message + i));
-    }
+  while (1) {
+    print_str("this is task [1]!\n");
+    delay();
+  }
+}
+
+void count_task() {
+  static uint64 count = 0;
+  while (1) {
+    print_str("this is task[2] schedule ");
+    printint_dec(count);
+    print_str(" times\n");
+    count++;
+    delay();
+  }
+}
+
+void draw_task() {
+  while (1) {
+    print_str("**********\n");
+    print_str("*        *\n");
+    print_str("*        *\n");
+    print_str("*        *\n");
+    print_str("**********\n");
+    delay();
+  }
 }
 
 void main() {
-  char message[] = "Hello, OS!\n";
   uartinit();
-  for (int i = 0; *(message + i) != '\0'; i++) {
-    uartputc(*(message + i));
-  }
-  create_task(print_task);
+  print_str("Hello, OS!\n");
+  create_task(count_task);
   scheduler();
 }
