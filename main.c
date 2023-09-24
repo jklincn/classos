@@ -33,6 +33,7 @@ void draw_task() {
 
 void main() {
   uartinit();
+  timerinit();
   print_str("Hello, OS!\n");
   create_task(count_task);
   scheduler();

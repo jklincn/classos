@@ -1,4 +1,4 @@
-OBJS = entry.o main.o uart.o task.o switch.o common.o
+OBJS = entry.o main.o uart.o task.o switch.o common.o timervec.o timer.o
 
 CC = riscv64-unknown-elf-gcc
 CFLAGS = -ggdb # 产生用于 gdb 的调试信息

@@ -28,4 +28,11 @@ void sched();
 // switch.S
 void _switch(struct context *, struct context *);
 
+// timer.c
+void timerinit();
+void timer_handle();
+
+// timervec.S
+void timervec();
+
 #endif
