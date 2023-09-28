@@ -1,4 +1,5 @@
 .globl timervec
+.align 4
 timervec:
         
         csrw mscratch, a0  # save a0 to mscratch
