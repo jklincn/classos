@@ -10,8 +10,8 @@ struct context;
 struct task;
 
 // common.c
-void memcpy(void *, const void *, uint64);
 void delay();
+void *memset(void *, int, uint64);
 
 // uart.c
 void uartinit();
@@ -23,16 +23,31 @@ void printint_dec(uint64);
 // task.c
 void create_task(void *);
 void scheduler();
-void sched();
+void switch_to_scheduler();
 
 // switch.S
 void _switch(struct context *, struct context *);
 
 // timer.c
-void timerinit();
-void timer_handle();
+void set_next_timer_interrupt();
 
-// timervec.S
-void timervec();
+// trapvec.S
+void _trap();
+void _restore();
+
+// trap.c
+void trapinit();
+void trap_handle();
+
+// riscv
+uint64 r_mie();
+uint64 r_mstatus();
+uint64 r_mcause();
+uint64 r_mtval();
+uint64 r_mepc();
+void w_mie(uint64);
+void w_mtvec(uint64);
+void w_mstatus(uint64);
+void enable_timer_interrupt();
 
 #endif
