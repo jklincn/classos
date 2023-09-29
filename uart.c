@@ -57,6 +57,7 @@ void print_str(char *str) {
 void printint_hex(uint64 n) {
   int i = 0;
   char buf[64];
+  print_str("0x");
   do {
     buf[i++] = digits[n % 16];
   } while ((n /= 16) != 0);
